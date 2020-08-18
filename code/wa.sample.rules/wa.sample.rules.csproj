@@ -63,11 +63,12 @@
     <Compile Include="AnalyzerConfigurationServiceStub.cs" />
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="CreateTestDataRule.cs" />
+    <Compile Include="ClickImageAccuracyRule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="REFrameworkRule.cs" />
     <Compile Include="RetryRules.cs" />
-    <Compile Include="SampleCounter.cs" />
-    <Compile Include="SampleRule.cs" />
+    <Compile Include="SampleWorkflowModelRule.cs" />
+    <Compile Include="SampleActivityModelRule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

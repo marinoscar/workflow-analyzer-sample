@@ -1,29 +1,26 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using wa.data.model;
-using wa.sample.tests;
+using wa.sample.rules;
 
-namespace wa.sample.rules.terminal
+namespace wa.sample.tests
 {
-    class Program
+    [TestFixture]
+    public class WhenClickImageAccuracyIsExecuted
     {
-        static void Main(string[] args)
+
+        [Test]
+        public void ItShouldPassWithValidActivity()
         {
-
-
             var project = Helper.LoadModel();
             var activity = project.Workflows.Last().Root.Children.First().Children.ToList()[2];
             var result = ClickImageAccuracyRule.Execute(activity, ClickImageAccuracyRule.Create());
 
-            Console.WriteLine("Has Errors: {0}", result.HasErrors);
-            Console.ReadKey();
-
+            Assert.IsFalse(result.HasErrors);
         }
-
-       
     }
 }

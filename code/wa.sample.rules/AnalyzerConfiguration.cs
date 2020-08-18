@@ -18,8 +18,8 @@ namespace wa.sample.rules
     {
         public void Initialize(UiPath.Studio.Activities.Api.Analyzer.IAnalyzerConfigurationService workflowAnalyzerConfigService)
         {
-            workflowAnalyzerConfigService.AddRule(SampleRule.Get());
-            workflowAnalyzerConfigService.AddCounter(SampleCounter.Get());
+            workflowAnalyzerConfigService.AddRule(SampleActivityModelRule.Create());
+            workflowAnalyzerConfigService.AddRule(SampleWorkflowModelRule.Create());
             workflowAnalyzerConfigService.AddRule(CreateTestDataRule.Create());
         }
     }

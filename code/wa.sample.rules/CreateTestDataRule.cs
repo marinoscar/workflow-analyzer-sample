@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,19 +15,25 @@ namespace wa.sample.rules
     {
         internal static Rule<IProjectModel> Create()
         {
-            return new Rule<IProjectModel>("Create Sample Data", "WACR-003", ExecuteRule);
+            var rule = new Rule<IProjectModel>("Create Test Data", "WACR-003", ExecuteRule);
+            rule.Parameters.Add("Path", new Parameter()
+            {
+                DefaultValue = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "project-data.json")
+            });
+            return rule;
         }
 
         internal static InspectionResult ExecuteRule(IProjectModel project, Rule instance)
         {
-            //implementation
-            //UiPath.Studio.Analyzer.ModelImpl.ProjectModel
+            var pathValue = instance.Parameters["Path"].Value;
             var jsonString = JsonConvert.SerializeObject(project, Formatting.Indented, new JsonSerializerSettings()
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
-            File.WriteAllText(@"C:\Users\CH489GT\Downloads\data.json", jsonString);
-            return new InspectionResult() { HasErrors = false, RecommendationMessage = "Success" };
+            if(string.IsNullOrWhiteSpace(pathValue)) return new InspectionResult() { HasErrors = true, RecommendationMessage = "Parameter not provided" };
+            
+            File.WriteAllText(pathValue, jsonString);
+            return new InspectionResult() { HasErrors = false, ErrorLevel = TraceLevel.Info, RecommendationMessage = $"File saved in { pathValue }" };
         }
     }
 }
