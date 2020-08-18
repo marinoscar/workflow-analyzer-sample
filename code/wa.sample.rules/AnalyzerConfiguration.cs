@@ -16,9 +16,11 @@ namespace wa.sample.rules
     /// </remarks>
     public class AnalyzerConfiguration : IRegisterAnalyzerConfiguration
     {
-        public void Initialize(IAnalyzerConfigurationService workflowAnalyzerConfigService)
+        public void Initialize(UiPath.Studio.Activities.Api.Analyzer.IAnalyzerConfigurationService workflowAnalyzerConfigService)
         {
             workflowAnalyzerConfigService.AddRule(SampleRule.Get());
+            workflowAnalyzerConfigService.AddCounter(SampleCounter.Get());
+            workflowAnalyzerConfigService.AddRule(CreateTestDataRule.Create());
         }
     }
 }

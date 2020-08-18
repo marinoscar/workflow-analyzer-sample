@@ -348,3 +348,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+code/wa.sample.tests/Test-Data/data.json
+code/wa.sample.rules.terminal/Test-Data/data.json
