@@ -24,9 +24,10 @@ namespace wa.sample.rules
                 .SelectMany(i => i.Arguments)
                 .FirstOrDefault(i => i.DisplayName == "Accuracy");
 
-            return new InspectionResult() {
+            return new InspectionResult()
+            {
                 ErrorLevel = TraceLevel.Error,
-                HasErrors = Convert.ToDouble(imageClickAccuracy.DefinedExpression) < 0.5, 
+                HasErrors = Convert.ToDouble(imageClickAccuracy.DefinedExpression) < 0.9,
                 RecommendationMessage = "Accuracy needs to be greater to 0.9"
             };
         }

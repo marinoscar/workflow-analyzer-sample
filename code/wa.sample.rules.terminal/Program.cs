@@ -14,13 +14,14 @@ namespace wa.sample.rules.terminal
         static void Main(string[] args)
         {
 
-
             var project = Helper.LoadModel();
             var activity = project.Workflows.Last().Root.Children.First().Children.ToList()[2];
+
             var result = ClickImageAccuracyRule.Execute(activity, ClickImageAccuracyRule.Create());
 
             Console.WriteLine("Has Errors: {0}", result.HasErrors);
             Console.ReadKey();
+
 
         }
 
